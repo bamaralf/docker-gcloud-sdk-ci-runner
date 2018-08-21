@@ -10,6 +10,10 @@ RUN apt-get update && apt-get install -y apt-transport-https apt-utils git curl 
     && git clone https://github.com/ahmetb/kubectx /opt/kubectx \
     && ln -s /opt/kubectx/kubectx /usr/local/bin/kubectx \
     && ln -s /opt/kubectx/kubens /usr/local/bin/kubens \
+    # Install Helm
+    && curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > get_helm.sh \
+    && chmod 700 get_helm.sh \
+    && ./get_helm.sh \
     # Cleaning apt cache
     && rm -rf /var/lib/apt/lists/*
 
