@@ -17,8 +17,4 @@ RUN apt-get update && apt-get install -y apt-transport-https apt-utils git curl 
     # Cleaning apt cache
     && rm -rf /var/lib/apt/lists/*
 
-ADD . /deploy
-
-WORKDIR /deploy
-
 #ENTRYPOINT sleep infinity
