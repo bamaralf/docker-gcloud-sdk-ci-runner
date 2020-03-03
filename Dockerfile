@@ -2,7 +2,7 @@ FROM google/cloud-sdk:slim
 
 ENV TERRAFORM_VERSION=0.12.21
 
-RUN apt-get update && apt-get install -y apt-transport-https apt-utils git curl gnupg \
+RUN apt-get update && apt-get install -y apt-transport-https apt-utils git curl wget unzip gnupg \
     openssh-client lsb-release build-essential --no-install-recommends\
     && curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - \
     && touch /etc/apt/sources.list.d/kubernetes.list \
@@ -20,6 +20,6 @@ RUN apt-get update && apt-get install -y apt-transport-https apt-utils git curl 
     && ./get_helm.sh \
     # Install Terraform
     && wget https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
-    && sudo unzip ./terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/local/bin/ \
+    && unzip ./terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/local/bin/ \
     # Cleaning apt cache
     && rm -rf /var/lib/apt/lists/*
